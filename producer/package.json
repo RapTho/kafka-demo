@@ -1,0 +1,23 @@
+{
+  "name": "producer",
+  "version": "1.0.0",
+  "description": "kafka demo producer",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RapTho/kafka-demo.git"
+  },
+  "author": "Raphael Tholl",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RapTho/kafka-demo/issues"
+  },
+  "homepage": "https://github.com/RapTho/kafka-demo#readme",
+  "dependencies": {
+    "kafkajs": "^2.0.0",
+    "node-fetch": "^2.6.7"
+  }
+}

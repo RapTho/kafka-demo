@@ -1,0 +1,54 @@
+version: "3.8"
+services:
+  zookeeper:
+    image: docker.io/bitnami/zookeeper:3.8
+    ports:
+      - "2181:2181"
+    volumes:
+      - "./zookeeper_data:/bitnami"
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+    networks:
+      - kafka
+
+  kafka:
+    image: docker.io/bitnami/kafka:3.1
+    ports:
+      - "9092:9092"
+    volumes:
+      - "./kafka_data:/bitnami"
+    environment:
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - ALLOW_PLAINTEXT_LISTENER=yes
+    networks:
+      - kafka
+      - producer
+      - consumer
+    depends_on:
+      - zookeeper
+
+  producer:
+    build: producer/
+    ports:
+      - "8000:8000"
+    environment:
+      - CLIENT_ID=Bob
+      - BROKER_URL=kafka:9092
+      - TOPIC=chuck-norris-jokes
+    networks:
+      - producer
+    depends_on:
+      - kafka
+
+
+volumes:
+  zookeeper_data:
+    driver: local
+  kafka_data:
+    driver: local
+  
+
+networks:
+  kafka:
+  producer:
+  consumer:
