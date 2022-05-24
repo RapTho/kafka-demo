@@ -4,7 +4,8 @@
   "description": "kafka demo producer",
   "main": "app.js",
   "scripts": {
-    "start": "dotenv_config_path=.env node app.js"
+    "dev": "NODE_ENV=dev dotenv_config_path=.env node app.js",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -17,7 +18,9 @@
   },
   "homepage": "https://github.com/RapTho/kafka-demo#readme",
   "dependencies": {
-    "kafkajs": "^2.0.0",
+    "kafkajs": "^2.0.0"
+  },
+  "devDependencies": {
     "dotenv": "^16.0.1"
   }
 }
