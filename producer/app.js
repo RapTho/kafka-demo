@@ -1,6 +1,7 @@
 const { Kafka, CompressionTypes, logLevel } = require("kafkajs");
 const fs = require("fs");
-require("dotenv").config();
+
+if (process.env.NODE_ENV === "dev") require("dotenv").config();
 
 const CLIENT_ID = process.env.CLIENT_ID || "Bob";
 const BROKER_URL = JSON.parse(process.env.BROKER_URL) || ["localhost:9092"];
@@ -63,4 +64,9 @@ const produce = async () => {
 
 produce().catch((err) => {
   throw new Error(err);
+});
+
+process.on("SIGTERM", () => {
+  console.log("SIGTERM signal received. Closing application");
+  process.exit(0);
 });

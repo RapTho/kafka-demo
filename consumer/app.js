@@ -1,6 +1,7 @@
 const { Kafka, logLevel } = require("kafkajs");
 const fs = require("fs");
-require("dotenv").config();
+
+if (process.env.NODE_ENV === "dev") require("dotenv").config();
 
 const CLIENT_ID = process.env.CLIENT_ID || "Alice";
 const BROKER_URL = JSON.parse(process.env.BROKER_URL) || ["localhost:9092"];
@@ -23,7 +24,7 @@ const kafka = new Kafka({
     password: PW,
     mechanism: "scram-sha-512",
   },
-  logLevel: logLevel.INFO,
+  logLevel: logLevel.ERROR,
 });
 
 const consumer = kafka.consumer({
@@ -49,4 +50,9 @@ const consume = async () => {
 
 consume().catch((err) => {
   throw new Error(err);
+});
+
+process.on("SIGTERM", () => {
+  console.log("SIGTERM signal received. Closing application");
+  process.exit(0);
 });
