@@ -27,7 +27,7 @@ Run the producer application and enter your environment variables
 docker run -d \
     --name producer \
     -e CLIENT_ID=Bob \
-    -e BROKER_URL=["localhost:9092"] \
+    -e BROKER_URL='["localhost:9092"]' \
     -e TOPIC=topic1 \
     -e CERT_PATH=cert.pem \
     -e KAFKA_USERNAME=producer \
@@ -50,8 +50,8 @@ Run the producer application and enter your environment variables
 docker run -d \
     --name consumer \
     -e CLIENT_ID=Alice \
-    -e BROKER_URL=["localhost:9092"] \
-    -e TOPICS=["topic1"] \
+    -e BROKER_URL='["localhost:9092"]' \
+    -e TOPICS='["topic1"]' \
     -e FROM_BEGINNING=false \
     -e GROUP_ID=myConsumer \
     -e CERT_PATH=cert.pem \
