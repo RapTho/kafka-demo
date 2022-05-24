@@ -24,7 +24,7 @@ docker build -t producer:1.0 .
 Run the producer application and enter your environment variables
 
 ```
-docker run -d \
+docker run \
     --name producer \
     -e CLIENT_ID=Bob \
     -e BROKER_URL='["localhost:9092"]' \
@@ -47,7 +47,7 @@ docker build -t consumer:1.0 .
 Run the producer application and enter your environment variables
 
 ```
-docker run -d \
+docker run \
     --name consumer \
     -e CLIENT_ID=Alice \
     -e BROKER_URL='["localhost:9092"]' \
