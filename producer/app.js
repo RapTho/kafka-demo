@@ -31,7 +31,7 @@ const producer = kafka.producer({
 
 const produce = async () => {
   await producer.connect();
-  console.log("Connected to Kafka broker");
+  console.log("Producer connected to Kafka broker");
 
   let index = 0;
 

@@ -1,0 +1,23 @@
+{
+  "name": "consumer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "dotenv_config_path=.env node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RapTho/kafka-demo.git"
+  },
+  "author": "Raphael Tholl",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RapTho/kafka-demo/issues"
+  },
+  "homepage": "https://github.com/RapTho/kafka-demo#readme",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "kafkajs": "^2.0.1"
+  }
+}
