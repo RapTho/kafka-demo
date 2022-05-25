@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/RapTho/kafka-demo#readme",
   "dependencies": {
+    "@kafkajs/confluent-schema-registry": "^3.2.1",
     "kafkajs": "^2.0.0"
   },
   "devDependencies": {

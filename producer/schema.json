@@ -1,0 +1,22 @@
+{
+    "type": "record",
+    "name": "Test",
+    "namespace": "org.example",
+    "fields": [
+        {
+            "name": "key", 
+            "type": "string"
+        },
+        {
+            "name": "value", 
+            "type": "string"
+        },
+        {
+            "name": "timestamp", 
+            "type": {
+                "type": "int",
+                "logicalType": "date"
+            }
+        }
+    ]
+}
