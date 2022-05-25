@@ -6,7 +6,7 @@ if (process.env.NODE_ENV === "dev") require("dotenv").config();
 const CLIENT_ID = process.env.CLIENT_ID || "Bob";
 const BROKER_URL = JSON.parse(process.env.BROKER_URL) || ["localhost:9092"];
 const TOPIC = process.env.TOPIC || "topic1";
-const CERT_PATH = process.env.CERT_PATH || "cert.pem";
+const CERT_PATH = process.env.CERT_PATH || "../kafka_files/cert.pem";
 const UN = process.env.KAFKA_USERNAME || "producer";
 const PW = process.env.KAFKA_PASSWORD || "myPassword";
 

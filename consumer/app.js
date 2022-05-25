@@ -8,7 +8,7 @@ const BROKER_URL = JSON.parse(process.env.BROKER_URL) || ["localhost:9092"];
 const TOPICS = JSON.parse(process.env.TOPICS) || ["topic1"];
 const FROM_BEGINNING = Boolean(process.env.FROM_BEGINNING) || false;
 const GROUP_ID = process.env.GROUP_ID || "myConsumer";
-const CERT_PATH = process.env.CERT_PATH || "cert.pem";
+const CERT_PATH = process.env.CERT_PATH || "../kafka_files/cert.pem";
 const UN = process.env.KAFKA_USERNAME || "consumer";
 const PW = process.env.KAFKA_PASSWORD || "myPassword";
 
