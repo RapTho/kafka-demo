@@ -1,8 +1,4 @@
 const { Kafka, CompressionTypes, logLevel } = require("kafkajs");
-const {
-  SchemaRegistry,
-  SchemaType,
-} = require("@kafkajs/confluent-schema-registry");
 const fs = require("fs");
 
 // For local dev only
@@ -11,10 +7,8 @@ if (process.env.NODE_ENV === "dev") require("dotenv").config();
 // Environment variable definition with default values
 const CLIENT_ID = process.env.CLIENT_ID || "Bob";
 const BROKER_URL = JSON.parse(process.env.BROKER_URL) || ["localhost:9092"];
-const REGISTRY_URL = process.env.REGISTRY_URL || "localhost:8081";
 const TOPIC = process.env.TOPIC || "topic1";
 const CERT_PATH = process.env.CERT_PATH || "cert.pem";
-const SCHEMA_PATH = process.env.SCHEMA_PATH || "schema.json";
 const UN = process.env.KAFKA_USERNAME || "producer";
 const PW = process.env.KAFKA_PASSWORD || "myPassword";
 
@@ -34,14 +28,6 @@ const kafka = new Kafka({
   logLevel: logLevel.ERROR,
 });
 
-// Initialize schema registry
-const options = {
-  [SchemaType.JSON]: {
-    strict: true,
-  },
-};
-const registry = new SchemaRegistry({ host: REGISTRY_URL }, options);
-
 // Initialize producer
 const producer = kafka.producer({
   allowAutoTopicCreation: false,
@@ -52,11 +38,6 @@ const producer = kafka.producer({
 const produce = async () => {
   await producer.connect();
   console.log("Producer connected to Kafka broker");
-
-  const { id } = await registry.register({
-    type: SchemaType.JSON,
-    schema: fs.readFileSync(SCHEMA_PATH, "utf-8"),
-  });
 
   let index = 0;
 
@@ -70,7 +51,7 @@ const produce = async () => {
         messages: [
           {
             key: CLIENT_ID,
-            value: await registry.encode(id, `Message number ${index}`),
+            value: `Message number ${index}`,
             timestamp: Date.now(),
           },
         ],

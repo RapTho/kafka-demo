@@ -1,17 +1,14 @@
 const { Kafka, logLevel } = require("kafkajs");
-const { SchemaRegistry } = require("@kafkajs/confluent-schema-registry");
 const fs = require("fs");
 
 if (process.env.NODE_ENV === "dev") require("dotenv").config();
 
 const CLIENT_ID = process.env.CLIENT_ID || "Alice";
 const BROKER_URL = JSON.parse(process.env.BROKER_URL) || ["localhost:9092"];
-const REGISTRY_URL = JSON.parse(process.env.REGISTRY_URL) || "localhost:8081";
 const TOPICS = JSON.parse(process.env.TOPICS) || ["topic1"];
 const FROM_BEGINNING = Boolean(process.env.FROM_BEGINNING) || false;
 const GROUP_ID = process.env.GROUP_ID || "myConsumer";
 const CERT_PATH = process.env.CERT_PATH || "cert.pem";
-const SCHEMA_PATH = process.env.CERT_PATH || "schema.json";
 const UN = process.env.KAFKA_USERNAME || "consumer";
 const PW = process.env.KAFKA_PASSWORD || "myPassword";
 
