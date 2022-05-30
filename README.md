@@ -28,10 +28,8 @@ docker run \
     --name producer \
     -e CLIENT_ID=Bob \
     -e BROKER_URL='["localhost:9092"]' \
-    -e REGISTRY_URL=http://localhost:8081 \
     -e TOPIC=topic1 \
     -e CERT_PATH=cert.pem \
-    -e SCHEMA_PATH=schema.json \
     -e KAFKA_USERNAME=producer \
     -e KAFKA_PASSWORD=myPassword \
     producer:1.0
@@ -53,12 +51,10 @@ docker run \
     --name consumer \
     -e CLIENT_ID=Alice \
     -e BROKER_URL='["localhost:9092"]' \
-    -e REGISTRY_URL=http://localhost:8081 \
     -e TOPICS='["topic1"]' \
     -e FROM_BEGINNING=false \
     -e GROUP_ID=myConsumer \
     -e CERT_PATH=cert.pem \
-    -e SCHEMA_PATH=schema.json \
     -e KAFKA_USERNAME=consumer \
     -e KAFKA_PASSWORD=myPassword \
     consumer:1.0
