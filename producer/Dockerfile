@@ -5,7 +5,7 @@ FROM node@sha256:9627b22e9e2e13ee0dbe692d85f3350c082c2b085e4e53114a016143dbc472f
 
 WORKDIR /app
 
-COPY ["app.js", "cert.pem", "schema.json", "package.json", "/app/"]
+COPY ["app.js", "cert.pem", "package.json", "/app/"]
 
 RUN npm install --production
 
